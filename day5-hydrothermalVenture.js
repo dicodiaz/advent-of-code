@@ -501,6 +501,19 @@ const input = [
   '562,433 -> 241,754',
 ];
 
+const exampleInput = [
+  '0,9 -> 5,9',
+  '8,0 -> 0,8',
+  '9,4 -> 3,4',
+  '2,2 -> 2,1',
+  '7,0 -> 7,4',
+  '6,4 -> 2,0',
+  '0,9 -> 2,9',
+  '3,4 -> 1,4',
+  '0,0 -> 8,8',
+  '5,5 -> 8,2',
+];
+
 const hydrothermalVenture = (input) => {
   const diagram = getDiagram(input);
   return getCountOfDangerousPoints(diagram);
@@ -525,7 +538,17 @@ const getDiagram = (input) => {
         else diagram[coordinates[1]][j]++;
       }
     } else {
-      // Part 2 pending
+      // Part 2
+      const xDirection = coordinates[0] - coordinates[2] < 0 ? 1 : -1;
+      const yDirection = coordinates[1] - coordinates[3] < 0 ? 1 : -1;
+      for (
+        let j = coordinates[0], k = coordinates[1];
+        xDirection === -1 ? j >= coordinates[2] : j <= coordinates[2];
+        j += xDirection, k += yDirection
+      ) {
+        if (diagram[k][j] === '.') diagram[k][j] = 1;
+        else diagram[k][j]++;
+      }
     }
   });
   return diagram;
