@@ -111,15 +111,34 @@ const getLowPoints = (input) => {
   const lowPoints = [];
   for (let i = 0; i < input.length; i++) {
     for (let j = 0; j < input[i].length; j++) {
-      let lowPoint = true;
-      directions.forEach(([x, y]) => {
-        if (input[i + x] && input[i + x][j + y] && input[i + x][j + y] <= input[i][j])
-          lowPoint = false;
-      });
-      if (lowPoint) lowPoints.push(parseInt(input[i][j]));
+      const lowPoint = !directions.some(
+        ([x, y]) => input[i + x] && input[i + x][j + y] && input[i + x][j + y] <= input[i][j],
+      );
+      if (lowPoint) lowPoints.push(+input[i][j]);
     }
   }
   return lowPoints.reduce((a, b) => a + b) + lowPoints.length;
 };
 
-console.log(getLowPoints(input));
+console.time('first');
+const first = getLowPoints(input);
+console.timeEnd('first');
+console.log(first);
+
+const findLargestBasins = (input) => {
+  const result = input.map((row) => row.map((elem) => (elem === '9' ? 1 : 0)));
+  const mockResult = result.slice(0, 10).map((elem) => elem.slice(0, 10));
+  // TODO: Figure out how to add a loop to measure all basin sizes
+  const basinSizes = [];
+  const basinSize = getBasinSize(mockResult);
+  basinSizes.push(basinSize);
+};
+
+const getBasinSize = (input) => {
+  // TODO: Figure out how to measure a basin size
+};
+
+console.time('second');
+const second = findLargestBasins(input);
+console.timeEnd('second');
+console.log(second);
