@@ -101,13 +101,14 @@ const input = [
   '4345678987545678999901298767899985423457891298989109999896459876789019210145679987654236789998795435',
 ].map((elem) => elem.split(''));
 
+const directions = [
+  [0, 1],
+  [1, 0],
+  [0, -1],
+  [-1, 0],
+];
+
 const getLowPoints = (input) => {
-  const directions = [
-    [0, 1],
-    [1, 0],
-    [0, -1],
-    [-1, 0],
-  ];
   const lowPoints = [];
   for (let i = 0; i < input.length; i++) {
     for (let j = 0; j < input[i].length; j++) {
@@ -126,16 +127,24 @@ console.timeEnd('first');
 console.log(first);
 
 const findLargestBasins = (input) => {
-  const result = input.map((row) => row.map((elem) => (elem === '9' ? 1 : 0)));
-  const mockResult = result.slice(0, 10).map((elem) => elem.slice(0, 10));
-  // TODO: Figure out how to add a loop to measure all basin sizes
+  const inputMod = input.map((row) => row.map((elem) => (elem === '9' ? 1 : 0)));
   const basinSizes = [];
-  const basinSize = getBasinSize(mockResult);
-  basinSizes.push(basinSize);
+  for (let i = 0; i < input.length; i++) {
+    for (let j = 0; j < input[i].length; j++) {
+      if (inputMod[i][j] === 0) basinSizes.push(getBasinSize(inputMod, i, j));
+    }
+  }
+  basinSizes.sort((a, b) => b - a);
+  return basinSizes[0] * basinSizes[1] * basinSizes[2];
 };
 
-const getBasinSize = (input) => {
-  // TODO: Figure out how to measure a basin size
+const getBasinSize = (input, x, y) => {
+  if (x < 0 || y < 0 || x >= input.length || y >= input[x].length || input[x][y] === 1) return 0;
+  input[x][y] = 1;
+  return directions.reduce(
+    (size, direction) => size + getBasinSize(input, x + direction[0], y + direction[1]),
+    1,
+  );
 };
 
 console.time('second');
