@@ -1,6 +1,6 @@
 # Advent Of Code
 
-This is a consolidation of every puzzle that was solved as a part of the Advent of Code's December 2021 challenges. For more information, visit https://adventofcode.com
+This is a consolidation of every Advent of Code's puzzle challenge that I solved, feel free to take a look. For more information, visit https://adventofcode.com
 
 ## Languages used
 
@@ -12,7 +12,7 @@ This is a consolidation of every puzzle that was solved as a part of the Advent 
 
 - GitHub: [@dicodiaz](https://github.com/dicodiaz)
 - LinkedIn: [Dico Diaz Dussan](https://www.linkedin.com/in/dico-diaz-dussan-476106a6/)
-- Portfolio: [dicodiaz.com.co](https://dicodiaz.com.co)
+- Portfolio: [Hey there. I'm Dico](https://dicodiaz.github.io/portfolio/)
 
 ## 🤝 Contributing
 
@@ -27,6 +27,7 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - [Grammerhub](http://www.grammerhub.org)
+- [Expedia Group](https://www.expediagroup.com/who-we-are/our-story/default.aspx#module-tabs_item--7)
 
 ## 📝 License
 
