@@ -1,13 +1,16 @@
 import java.io.File
 
-public fun readInput(file: String): Array<String> {
-  val input = ArrayList<String>()
-  File(file).reader().forEachLine { input.add(it) }
-  return input.toArray(arrayOf<String>())
+fun readInput(file: String, callback: ((line: String) -> Any)?): ArrayList<Any> {
+  val input = ArrayList<Any>()
+  File(file).reader().forEachLine { line ->
+    val newLine = callback?.let { callback(line) } ?: line
+    input.add(newLine)
+  }
+  return input
 }
 
 fun main() {
-  val input = readInput("inputs/day2.txt")
+  val input = readInput("inputs/day2.txt", null).toArray(arrayOf<String>())
   val roundScoreMap =
       mapOf(
           "A X" to 1 + 3,

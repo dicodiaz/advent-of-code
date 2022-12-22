@@ -1,4 +1,4 @@
-const readFile = async (file) => {
+const readFile = async (file, callback) => {
   const input = [];
   const fs = require('fs');
   const readline = require('readline');
@@ -7,7 +7,8 @@ const readFile = async (file) => {
     crlfDelay: Infinity,
   });
   rl.on('line', (line) => {
-    input.push(line);
+    const newLine = callback ? callback(line) : line;
+    input.push(newLine);
   });
   await new Promise((res) => rl.once('close', res));
   return input;
