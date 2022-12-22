@@ -5,6 +5,7 @@ This is a consolidation of every Advent of Code's puzzle challenge that I solved
 ## Languages used
 
 - JavaScript
+- Kotlin
 
 ## Author
 

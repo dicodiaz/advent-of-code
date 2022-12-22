@@ -3,7 +3,7 @@ const readFile = async (file, callback) => {
   const fs = require('fs');
   const readline = require('readline');
   const rl = readline.createInterface({
-    input: fs.createReadStream(file),
+    input: fs.createReadStream(`2022/Kotlin/src/main/inputs/${file}`),
     crlfDelay: Infinity,
   });
   rl.on('line', (line) => {

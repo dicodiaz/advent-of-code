@@ -1,7 +1,7 @@
 const { readFile } = require('../utils');
 
 (async () => {
-  const input = await readFile('2022/inputs/day1.txt', Number);
+  const input = await readFile('day1.txt', Number);
   console.log(calorieCounting(input));
   console.log(calorieCountingPart2(input));
 })();

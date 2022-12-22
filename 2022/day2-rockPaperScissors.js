@@ -1,7 +1,7 @@
 const { readFile } = require('../utils');
 
 (async () => {
-  const input = await readFile('2022/inputs/day2.txt');
+  const input = await readFile('day2.txt');
 
   // A, X: Rock
   // B, Y: Paper
