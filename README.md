@@ -5,6 +5,7 @@ This is a consolidation of every Advent of Code's puzzle challenge that I solved
 ## Languages used
 
 - JavaScript
+- Ruby
 - Kotlin
 
 ## Author
@@ -12,8 +13,8 @@ This is a consolidation of every Advent of Code's puzzle challenge that I solved
 👤 **Dico Diaz Dussan**
 
 - GitHub: [@dicodiaz](https://github.com/dicodiaz)
-- LinkedIn: [Dico Diaz Dussan](https://www.linkedin.com/in/dico-diaz-dussan-476106a6/)
-- Portfolio: [Hey there. I'm Dico](https://dicodiaz.github.io/portfolio/)
+- LinkedIn: [Dico Diaz Dussan](https://www.linkedin.com/in/dico-diaz-dussan/)
+- Portfolio: [https://portfolio.dicodiaz.com.co/](https://portfolio.dicodiaz.com.co/)
 
 ## 🤝 Contributing
 
@@ -28,7 +29,7 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - [Grammerhub](http://www.grammerhub.org)
-- [Expedia Group](https://www.expediagroup.com/who-we-are/our-story/default.aspx#module-tabs_item--7)
+- [Expedia Group](https://www.expediagroup.com/who-we-are/our-story/)
 
 ## 📝 License
 
