@@ -15,6 +15,14 @@ class Forest
       visible_from_down?(row, col)
   end
 
+  # part 2
+  def scenic_score(row, col)
+    return 0 if edge?(row, col)
+
+    viewing_distance_left(row, col) * viewing_distance_right(row, col) * viewing_distance_up(row, col) *
+      viewing_distance_down(row, col)
+  end
+
   private
 
   def edge?(row, col)
@@ -36,14 +44,45 @@ class Forest
   def visible_from_down?(row, col)
     (row + 1...@height).all? { |i| @grid[i][col] < @grid[row][col] }
   end
+
+  # part 2
+  def viewing_distance_left(row, col)
+    j = col - 1
+    j -= 1 until j.zero? || @grid[row][j] >= @grid[row][col]
+    col - j
+  end
+
+  def viewing_distance_right(row, col)
+    j = col + 1
+    j += 1 until j == @width - 1 || @grid[row][j] >= @grid[row][col]
+    j - col
+  end
+
+  def viewing_distance_up(row, col)
+    i = row - 1
+    i -= 1 until i.zero? || @grid[i][col] >= @grid[row][col]
+    row - i
+  end
+
+  def viewing_distance_down(row, col)
+    i = row + 1
+    i += 1 until i == @height - 1 || @grid[i][col] >= @grid[row][col]
+    i - row
+  end
 end
 
 forest = Forest.new(grid)
-p forest.width, forest.height
 count = 0
+# part 2
+max_scenic_score = 0
 (0...forest.height).each do |row|
   (0...forest.width).each do |col|
     count += 1 if forest.visible?(row, col)
+    # part 2
+    current_scenic_score = forest.scenic_score(row, col)
+    max_scenic_score = current_scenic_score if current_scenic_score > max_scenic_score
   end
 end
 p count
+# part 2
+p max_scenic_score
