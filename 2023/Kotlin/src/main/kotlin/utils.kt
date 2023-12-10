@@ -1,10 +1,10 @@
 import java.io.File
 
-fun readInput(file: String, callback: ((line: String) -> Any)?): ArrayList<Any> {
-  val input = ArrayList<Any>()
+fun <T> readInput(file: String, callback: (line: String) -> T): List<T> {
+  val input = mutableListOf<T>()
   File("src/main/inputs/$file").reader().forEachLine { line ->
-    val newLine = callback?.let { callback(line) } ?: line
+    val newLine = callback(line)
     input.add(newLine)
   }
-  return input
+  return input.toList()
 }

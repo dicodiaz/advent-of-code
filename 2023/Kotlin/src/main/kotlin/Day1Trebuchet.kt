@@ -1,11 +1,11 @@
 fun main() {
-  val input = readInput("day1.txt", null).toArray(arrayOf<String>())
+  val input = readInput("day1.txt") { it }
   val trebuchet = Day1Trebuchet(input)
   trebuchet.part1()
   trebuchet.part2()
 }
 
-class Day1Trebuchet(private val input: Array<String>) {
+class Day1Trebuchet(private val input: List<String>) {
   private val digitNamesToDigits = mapOf("one" to "1", "two" to "2", "three" to "3", "four" to "4", "five" to "5", "six" to "6", "seven" to "7", "eight" to "8", "nine" to "9")
   private val digitNames = digitNamesToDigits.keys
   private val digits = digitNamesToDigits.values
@@ -15,7 +15,7 @@ class Day1Trebuchet(private val input: Array<String>) {
       val firstAndLastDigitPairs = getFirstAndLastDigitPairs(elem)
       val firstDigit = firstAndLastDigitPairs[0]!!.second.toInt()
       val lastDigit = firstAndLastDigitPairs[1]!!.second.toInt()
-      return@fold result + firstDigit * 10 + lastDigit
+      result + firstDigit * 10 + lastDigit
     }
     println(result)
   }
@@ -40,7 +40,7 @@ class Day1Trebuchet(private val input: Array<String>) {
       } else if (firstAndLastDigitNamePairs[1] != null) {
         lastDigit = digitNamesToDigits[firstAndLastDigitNamePairs[1]!!.second]!!.toInt()
       }
-      return@fold result + firstDigit!! * 10 + lastDigit!!
+      result + firstDigit!! * 10 + lastDigit!!
     }
     println(result)
   }
