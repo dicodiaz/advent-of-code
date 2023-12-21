@@ -1,18 +1,31 @@
 fun main() {
   val input = readInput("day4.txt") { line ->
-    Pair(line.replace(Regex("^Card( |\\d)+: +(.+) \\| +(.+)\$"), "$2"), line.replace(Regex("^Card( |\\d)+: +(.+) \\| +(.+)\$"), "$3"))
+    val (winningNumbers, myNumbers) = line.replace(
+      Regex("^Card( |\\d)+: +(.+) \\| +(.+)\$"), "$2|$3"
+    ).split(Regex("\\|")).map { it.split(Regex(" +")) }
+    Scratchcard(winningNumbers, myNumbers)
   }
   val scratchcards = Day4Scratchcards(input)
   scratchcards.part1()
   scratchcards.part2()
 }
 
-class Day4Scratchcards(private val input:  List<Pair<String, String>>) {
+class Scratchcard(private val winningNumbers: List<String>, private val myNumbers: List<String>) {
+  operator fun component1(): List<String> {
+    return winningNumbers
+  }
+  
+  operator fun component2(): List<String> {
+    return myNumbers
+  }
+}
+
+class Day4Scratchcards(
+  private val scratchcards: List<Scratchcard>,
+) {
   fun part1() {
     var score = 0
-    for (pair in input) {
-      val winningNumbers = pair.first.split(Regex(" +"))
-      val myNumbers = pair.second.split(Regex(" +"))
+    for ((winningNumbers, myNumbers) in scratchcards) {
       var points = 0
       for (num in myNumbers) {
         if (winningNumbers.contains(num)) {
@@ -23,12 +36,10 @@ class Day4Scratchcards(private val input:  List<Pair<String, String>>) {
     }
     println(score)
   }
-
+  
   fun part2() {
-    val cardCountList = MutableList(input.size) { 1 }
-    input.forEachIndexed { index, pair ->
-      val winningNumbers = pair.first.split(Regex(" +"))
-      val myNumbers = pair.second.split(Regex(" +"))
+    val cardCountList = MutableList(scratchcards.size) { 1 }
+    scratchcards.forEachIndexed { index, (winningNumbers, myNumbers) ->
       var offset = 0
       for (num in myNumbers) {
         if (winningNumbers.contains(num)) {

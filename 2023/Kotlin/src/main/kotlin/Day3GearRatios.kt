@@ -5,9 +5,20 @@ fun main() {
   gearRatios.part2()
 }
 
-class Day3GearRatios(private val input: List<CharArray>) {
-  val directions = listOf(Pair(-1, -1), Pair(-1, 0), Pair(-1, 1), Pair(0, -1), Pair(0, 1), Pair(1, -1), Pair(1, 0), Pair(1, 1))
-
+class Day3GearRatios(
+  private val input: List<CharArray>,
+) {
+  val directions = listOf(
+    Pair(-1, -1),
+    Pair(-1, 0),
+    Pair(-1, 1),
+    Pair(0, -1),
+    Pair(0, 1),
+    Pair(1, -1),
+    Pair(1, 0),
+    Pair(1, 1)
+  )
+  
   fun part1() {
     val partNumbers = mutableListOf<Int>()
     var row = 0
@@ -44,7 +55,7 @@ class Day3GearRatios(private val input: List<CharArray>) {
     }
     println(partNumbers.sum())
   }
-
+  
   fun part2() {
     val gearRatios = mutableListOf<Int>()
     var row = 0
@@ -57,8 +68,10 @@ class Day3GearRatios(private val input: List<CharArray>) {
           directions.forEach { direction ->
             val newRow = row + direction.first
             val newCol = col + direction.second
-            if (newRow < 0 || newRow >= input.size || newCol < 0 || newCol >= input[newRow].size
-              || visited.contains(Pair(newRow, newCol))) {
+            if (newRow < 0 || newRow >= input.size || newCol < 0 || newCol >= input[newRow].size || visited.contains(
+                Pair(newRow, newCol)
+              )
+            ) {
               return@forEach
             }
             if (input[newRow][newCol].isDigit()) {

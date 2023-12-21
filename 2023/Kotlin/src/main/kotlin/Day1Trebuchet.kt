@@ -5,11 +5,23 @@ fun main() {
   trebuchet.part2()
 }
 
-class Day1Trebuchet(private val input: List<String>) {
-  private val digitNamesToDigits = mapOf("one" to "1", "two" to "2", "three" to "3", "four" to "4", "five" to "5", "six" to "6", "seven" to "7", "eight" to "8", "nine" to "9")
+class Day1Trebuchet(
+  private val input: List<String>,
+) {
+  private val digitNamesToDigits = mapOf(
+    "one" to "1",
+    "two" to "2",
+    "three" to "3",
+    "four" to "4",
+    "five" to "5",
+    "six" to "6",
+    "seven" to "7",
+    "eight" to "8",
+    "nine" to "9"
+  )
   private val digitNames = digitNamesToDigits.keys
   private val digits = digitNamesToDigits.values
-
+  
   fun part1() {
     val result = input.fold(0) { result, elem ->
       val firstAndLastDigitPairs = getFirstAndLastDigitPairs(elem)
@@ -19,7 +31,7 @@ class Day1Trebuchet(private val input: List<String>) {
     }
     println(result)
   }
-
+  
   fun part2() {
     val result = input.fold(0) { result, elem ->
       val firstAndLastDigitPairs = getFirstAndLastDigitPairs(elem)
@@ -44,12 +56,12 @@ class Day1Trebuchet(private val input: List<String>) {
     }
     println(result)
   }
-
-  private fun getFirstAndLastDigitPairs(str: String):Array<Pair<Int, String>?> {
+  
+  private fun getFirstAndLastDigitPairs(str: String): Array<Pair<Int, String>?> {
     return arrayOf(str.findAnyOf(digits), str.findLastAnyOf(digits))
   }
-
-  private fun getFirstAndLastDigitNamePairs(str: String):Array<Pair<Int, String>?> {
+  
+  private fun getFirstAndLastDigitNamePairs(str: String): Array<Pair<Int, String>?> {
     return arrayOf(str.findAnyOf(digitNames), str.findLastAnyOf(digitNames))
   }
 }

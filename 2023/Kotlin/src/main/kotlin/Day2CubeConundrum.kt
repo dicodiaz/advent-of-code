@@ -20,7 +20,9 @@ fun main() {
 
 class CubeSet(var red: Int = 0, var green: Int = 0, var blue: Int = 0)
 
-class Day2CubeConundrum(private val input: List<List<CubeSet>>) {
+class Day2CubeConundrum(
+  private val input: List<List<CubeSet>>,
+) {
   fun part1() {
     var sum = 0
     input.forEachIndexed { index, game ->
@@ -30,12 +32,16 @@ class Day2CubeConundrum(private val input: List<List<CubeSet>>) {
     }
     println(sum)
   }
-
+  
   fun part2() {
     var sum = 0
     input.forEach { game ->
-      val maxValues = game.fold(listOf(0,0,0)) { maxValues, cubeSet ->
-        listOf(cubeSet.red.coerceAtLeast(maxValues[0]), cubeSet.green.coerceAtLeast(maxValues[1]), cubeSet.blue.coerceAtLeast(maxValues[2]))
+      val maxValues = game.fold(listOf(0, 0, 0)) { maxValues, cubeSet ->
+        listOf(
+          cubeSet.red.coerceAtLeast(maxValues[0]),
+          cubeSet.green.coerceAtLeast(maxValues[1]),
+          cubeSet.blue.coerceAtLeast(maxValues[2])
+        )
       }
       sum += maxValues[0] * maxValues[1] * maxValues[2]
     }
